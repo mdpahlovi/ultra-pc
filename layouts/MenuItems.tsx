@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { useRouter } from "next/router";
 import { Menu, Button, type MenuProps } from "antd";
+import { useSession, signOut } from "next-auth/react";
 
 const navLink = (href: string, text: string) => {
     return { key: href, label: <Link href={href}>{text}</Link> };
@@ -28,19 +29,37 @@ export default function MenuItems({ vertical }: { vertical?: boolean }) {
             key: "/pc-builder",
             label: (
                 <Link href="/pc-builder">
-                    <Button shape="round">PC Builder</Button>
+                    <Button type="primary" shape="round">
+                        PC Builder
+                    </Button>
                 </Link>
             ),
         },
         {
             key: "/login",
-            label: (
-                <Link href="/login">
-                    <Button shape="round">Login / Signup</Button>
-                </Link>
-            ),
+            label: <AuthButton />,
         },
     ];
 
     return <Menu mode={vertical ? "vertical" : "horizontal"} selectedKeys={[pathname]} items={items} />;
 }
+
+const AuthButton = () => {
+    const { data } = useSession();
+
+    return (
+        <>
+            {data?.user ? (
+                <Button type="primary" shape="round" onClick={() => signOut()} danger>
+                    SignOut
+                </Button>
+            ) : (
+                <Link href="/login">
+                    <Button type="primary" shape="round" ghost>
+                        Login / Signup
+                    </Button>
+                </Link>
+            )}
+        </>
+    );
+};

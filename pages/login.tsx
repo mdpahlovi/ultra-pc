@@ -8,21 +8,33 @@ import { GoogleOutlined, GithubOutlined, LockOutlined, MailOutlined } from "@ant
 import styles from "@/styles/Auth.module.css";
 
 export default function LoginPage() {
-    const router = useRouter();
+    const { query } = useRouter();
     const [form] = Form.useForm();
 
     const onFinish = async (data: any) => {
-        console.log(data);
+        console.log({ data });
+    };
+
+    const googleLogin = () => {
+        signIn("google", {
+            callbackUrl: "http://localhost:3000/",
+        });
+    };
+
+    const githubLogin = () => {
+        signIn("github", {
+            callbackUrl: "http://localhost:3000/",
+        });
     };
 
     return (
         <div className={styles.form}>
             <h2 style={{ marginBottom: "32px" }}>Login to Your Account</h2>
             <div className={styles.social_icons}>
-                <Button shape="round" size="large" onClick={() => signIn("google")} ghost>
+                <Button shape="round" size="large" onClick={googleLogin} ghost>
                     Google <GoogleOutlined />
                 </Button>
-                <Button shape="round" size="large" onClick={() => signIn("github")} ghost>
+                <Button shape="round" size="large" onClick={githubLogin} ghost>
                     Github <GithubOutlined />
                 </Button>
             </div>

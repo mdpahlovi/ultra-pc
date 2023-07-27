@@ -6,5 +6,9 @@ export default function Home() {
 }
 
 Home.getLayout = function getLayout(page: ReactElement) {
-    return <Main title="Ultra Pc | Pc Builders">{page}</Main>;
+    return (
+        <Main title="Ultra Pc | Pc Builders" className="">
+            {page}
+        </Main>
+    );
 };

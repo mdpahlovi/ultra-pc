@@ -1,7 +1,12 @@
 import Head from "next/head";
-import type { ReactNode } from "react";
+import { Layout } from "antd";
+import Navbar from "./Navbar";
+import type { MainProps } from "@/types";
+import styles from "./Layout.module.css";
 
-export default function Main({ children, title }: { children: ReactNode; title: string }) {
+const { Header, Footer } = Layout;
+
+export default function Main({ title, className, children }: MainProps) {
     return (
         <>
             <Head>
@@ -10,9 +15,13 @@ export default function Main({ children, title }: { children: ReactNode; title: 
                 <meta name="viewport" content="width=device-width, initial-scale=1" />
                 <link rel="icon" href="/favicon.ico" />
             </Head>
-            <div>Navbar</div>
-            {children}
-            <div>Footer</div>
+            <Layout>
+                <Header className={styles.header}>
+                    <Navbar />
+                </Header>
+                <main className={className}>{children}</main>
+                <Footer className={styles.footer}>Ultra Pc ©2023 Created by MD Pahlovi</Footer>
+            </Layout>
         </>
     );
 }

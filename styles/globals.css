@@ -3,3 +3,12 @@
     border: 0;
     padding: 0;
 }
+
+main {
+    padding: 50px;
+    min-height: calc(100vh - 128px);
+}
+
+.ant-menu-horizontal {
+    border-bottom: none;
+}

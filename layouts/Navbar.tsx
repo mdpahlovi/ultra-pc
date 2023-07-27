@@ -10,7 +10,7 @@ export default function Navbar() {
 
     return (
         <>
-            <Row justify="space-between" align="middle">
+            <Row style={{ width: "100%" }} justify="space-between" align="middle">
                 <Image src="/logo.png" alt="" width={144} height={40} />
                 <div className={styles.menuItems}>
                     <MenuItems />

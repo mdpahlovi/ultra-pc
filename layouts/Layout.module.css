@@ -2,6 +2,8 @@
     position: sticky;
     top: 0;
     background-color: white;
+    display: flex;
+    align-items: center;
 }
 
 .main {
@@ -25,7 +27,7 @@
         display: none;
     }
     .menuItems {
-        width: 445px;
+        width: 480px;
         display: block;
     }
 }

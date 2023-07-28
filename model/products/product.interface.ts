@@ -5,7 +5,7 @@ export const statusConstant: IStatus[] = ["In Stock", "Out of stock"];
 
 export interface IReviews {
     user: string;
-    rating: string;
+    rating: number;
     comment: string;
 }
 
@@ -14,7 +14,7 @@ export interface IProduct extends Document {
     name: string;
     category: ObjectId;
     status: IStatus;
-    price: string;
+    price: number;
     description: string;
     keyFeature: string[];
     rating: string;

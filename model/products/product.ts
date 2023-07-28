@@ -7,7 +7,7 @@ const productSchema = new Schema<IProduct>(
         name: { type: String, required: true },
         category: { type: Schema.Types.ObjectId, ref: "category", required: true },
         status: { type: String, required: true, enum: statusConstant },
-        price: { type: String, required: true },
+        price: { type: Number, required: true },
         description: { type: String, required: true },
         keyFeature: { type: [String], required: true },
         rating: { type: String },
@@ -15,8 +15,8 @@ const productSchema = new Schema<IProduct>(
             type: [
                 {
                     _id: false,
-                    user: { type: String, required: true },
-                    rating: { type: String, required: true },
+                    user: { type: Schema.Types.ObjectId, ref: "user", required: true },
+                    rating: { type: Number, required: true },
                     comment: { type: String, required: true },
                 },
             ],

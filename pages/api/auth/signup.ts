@@ -1,6 +1,6 @@
 import { hash } from "bcryptjs";
 import User from "@/model/users/user";
-import connectMongo from "@/database/connection";
+import connectMongo from "@/helpers/connection";
 import type { NextApiRequest, NextApiResponse } from "next";
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {

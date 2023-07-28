@@ -9,29 +9,29 @@ import styles from "@/styles/Category.module.css";
 export default function CategoryProduct({ products }: { products: IProduct[] }) {
     return (
         <div className={styles.products}>
-            {products?.length && products.map((product) => <ProductCard key={product?._id} product={product} />)}
+            {/* {products?.length && products.map((product) => <ProductCard key={product?._id} product={product} />)} */}
         </div>
     );
 }
 
-export const getStaticPaths: GetStaticPaths = async () => {
-    const res = await fetch("https://ultra-pc.vercel.app/api/category");
-    const categories = await res.json();
+// export const getStaticPaths: GetStaticPaths = async () => {
+//     const res = await fetch("https://ultra-pc.vercel.app/api/category");
+//     const categories = await res.json();
 
-    const paths = categories.map((category: ICategory) => ({
-        params: { category: category._id },
-    }));
+//     const paths = categories.map((category: ICategory) => ({
+//         params: { category: category._id },
+//     }));
 
-    return { paths, fallback: false };
-};
+//     return { paths, fallback: false };
+// };
 
-export const getStaticProps: GetStaticProps = async (context) => {
-    const { params } = context;
-    const res = await fetch(`https://ultra-pc.vercel.app/api/category/${params?.category}`);
-    const products = await res.json();
+// export const getStaticProps: GetStaticProps = async (context) => {
+//     const { params } = context;
+//     const res = await fetch(`https://ultra-pc.vercel.app/api/category/${params?.category}`);
+//     const products = await res.json();
 
-    return { props: { products } };
-};
+//     return { props: { products } };
+// };
 
 CategoryProduct.getLayout = function getLayout(page: ReactElement) {
     return (

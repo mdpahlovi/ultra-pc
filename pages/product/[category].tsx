@@ -25,13 +25,13 @@ export const getStaticPaths: GetStaticPaths = async () => {
     return { paths, fallback: false };
 };
 
-export const getStaticProps: GetStaticProps = async (context) => {
-    const { params } = context;
-    const res = await fetch(`http://localhost:3000/api/product/${params?.category}`);
-    const products = await res.json();
+// export const getStaticProps: GetStaticProps = async (context) => {
+//     const { params } = context;
+//     const res = await fetch(`http://localhost:3000/api/product/${params?.category}`);
+//     const products = await res.json();
 
-    return { props: { products } };
-};
+//     return { props: { products } };
+// };
 
 CategoryProduct.getLayout = function getLayout(page: ReactElement) {
     return (

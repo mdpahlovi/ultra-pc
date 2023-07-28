@@ -1,6 +1,6 @@
-import User from "@/model/user";
 import NextAuth from "next-auth";
 import { compare } from "bcryptjs";
+import User from "@/model/users/user";
 import connectMongo from "@/database/connection";
 import GithubProvider from "next-auth/providers/github";
 import GoogleProvider from "next-auth/providers/google";

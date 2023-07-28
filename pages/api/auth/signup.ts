@@ -1,5 +1,5 @@
-import User from "@/model/user";
 import { hash } from "bcryptjs";
+import User from "@/model/users/user";
 import connectMongo from "@/database/connection";
 import type { NextApiRequest, NextApiResponse } from "next";
 

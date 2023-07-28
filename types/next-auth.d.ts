@@ -1,6 +1,6 @@
 import NextAuth from "next-auth";
 import { JWT } from "next-auth/jwt";
-import { IUser } from "@/model/user.interface";
+import { IUser } from "@/model/users/user.interface";
 
 declare module "next-auth" {
     interface Session {

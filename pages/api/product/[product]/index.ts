@@ -5,9 +5,9 @@ import { NextApiRequest, NextApiResponse } from "next";
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
     connectMongo();
 
-    const { id } = req.query;
+    const { product } = req.query;
     if (req.method === "GET") {
-        const result = await Product.findById(id)
+        const result = await Product.findById(product)
             .populate({
                 path: "category",
                 select: { _id: 0, name: 1 },

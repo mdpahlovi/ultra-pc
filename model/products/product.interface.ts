@@ -23,6 +23,4 @@ export interface IProduct extends Document {
     reviews: IReviews[];
 }
 
-export interface ProductModel extends Model<IProduct> {
-    getAvgRating(): IProduct[];
-}
+export type ProductModel = Model<IProduct, Record<string, unknown>>;

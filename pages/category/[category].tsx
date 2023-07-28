@@ -1,9 +1,9 @@
 import Main from "@/layouts/Main";
-import { ReactElement } from "react";
-import { GetStaticPaths, GetStaticProps } from "next";
+import type { ReactElement } from "react";
+import type { GetStaticPaths, GetStaticProps } from "next";
 import ProductCard from "@/components/Product/ProductCard";
-import { IProduct } from "@/model/products/product.interface";
-import { ICategory } from "@/model/categories/category.interface";
+import type { IProduct } from "@/model/products/product.interface";
+import type { ICategory } from "@/model/categories/category.interface";
 import styles from "@/styles/Category.module.css";
 
 export default function CategoryProduct({ products }: { products: IProduct[] }) {
@@ -11,18 +11,18 @@ export default function CategoryProduct({ products }: { products: IProduct[] }) 
 }
 
 export const getStaticPaths: GetStaticPaths = async () => {
-    const res = await fetch("https://ultra-pc.vercel.app/api/category");
+    const res = await fetch("http://localhost:3000/api/category");
     const categories = await res.json();
 
     const paths = categories.map((category: ICategory) => ({
-        params: { category: category._id },
+        params: { category: category?._id },
     }));
 
     return { paths, fallback: false };
 };
 
 export const getStaticProps: GetStaticProps = async ({ params }) => {
-    const res = await fetch(`https://ultra-pc.vercel.app/api/category/${params?.category}`);
+    const res = await fetch(`http://localhost:3000/api/category/${params?.category}`);
     const products = await res.json();
 
     return { props: { products } };

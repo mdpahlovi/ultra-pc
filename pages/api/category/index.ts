@@ -1,6 +1,6 @@
 import connectMongo from "@/helpers/connection";
 import Category from "@/model/categories/category";
-import { NextApiRequest, NextApiResponse } from "next";
+import type { NextApiRequest, NextApiResponse } from "next";
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
     connectMongo();

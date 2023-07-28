@@ -1,4 +1,4 @@
-import type { Document, Model } from "mongoose";
+import type { Document, Model, ObjectId } from "mongoose";
 
 export type IStatus = "In Stock" | "Out of stock";
 export const statusConstant: IStatus[] = ["In Stock", "Out of stock"];
@@ -12,7 +12,7 @@ export interface IReviews {
 export interface IProduct extends Document {
     image: string;
     name: string;
-    category: string;
+    category: ObjectId;
     status: IStatus;
     price: string;
     description: string;

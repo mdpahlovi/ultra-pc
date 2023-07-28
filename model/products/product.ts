@@ -5,7 +5,7 @@ const productSchema = new Schema<IProduct>(
     {
         image: { type: String, required: true },
         name: { type: String, required: true },
-        category: { type: String, required: true },
+        category: { type: Schema.Types.ObjectId, ref: "category", required: true },
         status: { type: String, required: true, enum: statusConstant },
         price: { type: String, required: true },
         description: { type: String, required: true },

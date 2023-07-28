@@ -31,7 +31,7 @@ export default function Home({ categories }: { categories: ICategory[] }) {
 }
 
 export const getStaticProps: GetStaticProps = async () => {
-    const res = await fetch("http://localhost:3000/api/category");
+    const res = await fetch(`${process.env.NEXTAUTH_URL}/api/category`);
     const categories = await res.json();
     return { props: { categories } };
 };

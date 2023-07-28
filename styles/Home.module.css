@@ -6,9 +6,10 @@
 }
 
 .heroImage {
+    margin-left: auto;
     display: block;
-    width: 100%;
-    height: 100%;
+    max-width: 600px;
+    max-height: 360px;
 }
 
 .content {

@@ -30,11 +30,11 @@ export default function Home({ categories }: { categories: ICategory[] }) {
     );
 }
 
-// export const getStaticProps: GetStaticProps = async () => {
-//     const res = await fetch(`${process.env.NEXTAUTH_URL}/api/category`);
-//     const categories = await res.json();
-//     return { props: { categories } };
-// };
+export const getStaticProps: GetStaticProps = async () => {
+    const res = await fetch(`https://ultra-pc.vercel.app/api/category`);
+    const categories = await res.json();
+    return { props: { categories } };
+};
 
 Home.getLayout = function getLayout(page: ReactElement) {
     return (

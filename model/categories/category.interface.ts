@@ -1,9 +1,10 @@
-import type { Document, Model, ObjectId } from "mongoose";
+import type { Document, Model, Types } from "mongoose";
+import { IProduct } from "../products/product.interface";
 
 export interface ICategory extends Document {
     name: string;
     image: string;
-    products: ObjectId[];
+    products: Types.ObjectId[] | IProduct[];
 }
 
 export type CategoryModel = Model<ICategory, Record<string, unknown>>;

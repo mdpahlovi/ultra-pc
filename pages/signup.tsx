@@ -13,7 +13,7 @@ export default function SignupPage() {
 
     const onFinish = async (values: { name: string; email: string; password: string }) => {
         axios
-            .post("http://localhost:3000/api/auth/signup", values)
+            .post("/api/auth/signup", values)
             .then(({ data }) => {
                 data?.status ? router.push("/login") : alert(data?.message);
             })

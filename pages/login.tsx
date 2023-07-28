@@ -19,13 +19,13 @@ export default function LoginPage() {
 
     const googleLogin = () => {
         signIn("google", {
-            callbackUrl: "https://ultra-pc.vercel.app/", //"http://localhost:3000/"
+            callbackUrl: "/",
         });
     };
 
     const githubLogin = () => {
         signIn("github", {
-            callbackUrl: "https://ultra-pc.vercel.app/",
+            callbackUrl: "/",
         });
     };
 

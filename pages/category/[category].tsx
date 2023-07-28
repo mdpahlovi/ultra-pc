@@ -27,7 +27,7 @@ export const getStaticPaths: GetStaticPaths = async () => {
 
 export const getStaticProps: GetStaticProps = async (context) => {
     const { params } = context;
-    const res = await fetch(`https://ultra-pc.vercel.app/api/product/${params?.category}`);
+    const res = await fetch(`https://ultra-pc.vercel.app/api/category/${params?.category}`);
     const products = await res.json();
 
     return { props: { products } };

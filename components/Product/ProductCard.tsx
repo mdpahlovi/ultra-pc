@@ -28,7 +28,7 @@ export default function ProductCard({ product }: { product: IProduct }) {
                 <Tag color={status === "In Stock" ? "#87d068" : "#f50"} style={{ margin: "10px 0 16px" }}>
                     {status}
                 </Tag>
-                <Link href={_id} style={{ display: "block" }}>
+                <Link href={`/product/${_id}`} style={{ display: "block" }}>
                     <Button size="large" shape="round" style={{ backgroundColor: "black", color: "white" }} block>
                         See Details
                     </Button>

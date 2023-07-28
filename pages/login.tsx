@@ -8,11 +8,13 @@ import { GoogleOutlined, GithubOutlined, LockOutlined, MailOutlined } from "@ant
 import styles from "@/styles/Auth.module.css";
 
 export default function LoginPage() {
-    const { query } = useRouter();
+    const router = useRouter();
     const [form] = Form.useForm();
 
-    const onFinish = async (data: any) => {
-        console.log({ data });
+    const onFinish = async ({ email, password }: { email: string; password: string }) => {
+        const status = await signIn("credentials", { redirect: false, email, password, callbackUrl: "/" });
+        if (status?.ok) router.push(status?.url!);
+        if (status?.error) alert(status.error);
     };
 
     const googleLogin = () => {

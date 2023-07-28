@@ -1,3 +1,4 @@
+import axios from "axios";
 import Link from "next/link";
 import Main from "@/layouts/Main";
 import { useRouter } from "next/router";
@@ -10,7 +11,14 @@ export default function SignupPage() {
     const router = useRouter();
     const [form] = Form.useForm();
 
-    const onFinish = async (values: any) => {};
+    const onFinish = async (values: { name: string; email: string; password: string }) => {
+        axios
+            .post("http://localhost:3000/api/auth/signup", values)
+            .then(({ data }) => {
+                data?.status ? router.push("/login") : alert(data?.message);
+            })
+            .catch((error) => alert(error?.message));
+    };
 
     return (
         <div className={styles.form}>

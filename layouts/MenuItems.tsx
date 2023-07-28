@@ -17,12 +17,12 @@ export default function MenuItems({ vertical }: { vertical?: boolean }) {
         axios.get("/api/category").then((res) => setCategories(res.data));
     }, []);
 
-    const categoryLinks = categories.map(({ _id, name }) => navLink(`/products/${_id}`, name));
+    const categoryLinks = categories.map(({ _id, name }) => navLink(`/category/${_id}`, name));
 
     const items: MenuProps["items"] = [
         navLink("/", "Home"),
         {
-            key: "/products",
+            key: "/category",
             label: "Products",
             children: [...categoryLinks],
         },

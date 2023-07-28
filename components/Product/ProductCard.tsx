@@ -2,9 +2,9 @@ import React from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { Badge, Button, Card, Tag } from "antd";
-
-import { IProduct } from "@/model/products/product.interface";
 import calculateAverage from "@/helpers/calculateAverage";
+import { IProduct } from "@/model/products/product.interface";
+import { ICategory } from "@/model/categories/category.interface";
 
 export default function ProductCard({ product }: { product: IProduct }) {
     const { _id, name, image, category, price, status, reviews } = product;
@@ -17,18 +17,14 @@ export default function ProductCard({ product }: { product: IProduct }) {
     }
 
     return (
-        <Badge.Ribbon text={"Test"}>
-            <Card
-                bordered={false}
-                style={{ display: "flex", flexDirection: "column", gap: "20px" }}
-                cover={<Image src={image} alt="" width={448} height={256} />}
-            >
-                <Card.Meta title={name} style={{ marginBottom: "10px" }} />
+        <Badge.Ribbon text={(category as ICategory).name}>
+            <Card bordered={false} cover={<Image src={image} alt="" width={448} height={256} />}>
+                <h3 style={{ marginBottom: "10px" }}>{name}</h3>
                 <div style={{ marginBottom: "4px", height: "4px", background: "#000", width: "100%" }} />
-                <p style={{ display: "flex", justifyContent: "space-between", width: "100%", fontSize: "14px" }}>
+                <div style={{ display: "flex", justifyContent: "space-between", fontSize: "14px" }}>
                     <span>Price: ${price}</span>
                     <span>Rating: {rating}</span>
-                </p>
+                </div>
                 <Tag color={status === "In Stock" ? "#87d068" : "#f50"} style={{ margin: "10px 0 16px" }}>
                     {status}
                 </Tag>

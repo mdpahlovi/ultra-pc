@@ -1,4 +1,6 @@
+import axios from "axios";
 import Link from "next/link";
+import { useEffect, useState } from "react";
 import { useRouter } from "next/router";
 import { Menu, Button, type MenuProps } from "antd";
 import { useSession, signOut } from "next-auth/react";
@@ -9,21 +11,20 @@ const navLink = (href: string, text: string) => {
 
 export default function MenuItems({ vertical }: { vertical?: boolean }) {
     const { pathname } = useRouter();
+    const [categories, setCategories] = useState([]);
+
+    useEffect(() => {
+        axios.get("/api/category").then((res) => setCategories(res.data));
+    }, []);
+
+    const categoryLinks = categories.map(({ _id, name }) => navLink(`/products/${_id}`, name));
 
     const items: MenuProps["items"] = [
         navLink("/", "Home"),
         {
             key: "/products",
             label: "Products",
-            children: [
-                navLink("/products/cup", "CPU / Processor"),
-                navLink("/products/motherboard", "Motherboard"),
-                navLink("/products/ram", "RAM"),
-                navLink("/products/power-supply-unit", "Power Supply Unit"),
-                navLink("/products/storage-device", "Storage Device"),
-                navLink("/products/monitor", "Monitor"),
-                navLink("/products/others", "Others"),
-            ],
+            children: [...categoryLinks],
         },
         {
             key: "/pc-builder",

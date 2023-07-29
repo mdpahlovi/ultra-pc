@@ -26,8 +26,8 @@ export default function Home({ categories, products }: { categories: ICategory[]
 }
 
 export const getStaticProps: GetStaticProps = async () => {
-    const res1 = await fetch(`http://localhost:3000/api/category`);
-    const res2 = await fetch(`http://localhost:3000/api/product/random`);
+    const res1 = await fetch(`https://ultra-pc-server.vercel.app/api/category`);
+    const res2 = await fetch(`https://ultra-pc-server.vercel.app/api/product/random`);
 
     const categories = await res1.json();
     const products = await res2.json();

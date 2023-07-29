@@ -9,7 +9,7 @@ export default function BuildProduct({ products }: { products: IProduct[] }) {
 }
 
 export const getServerSideProps: GetServerSideProps = async ({ params }) => {
-    const res = await fetch(`http://localhost:3000/api/category/${params?.category}`);
+    const res = await fetch(`https://ultra-pc-server.vercel.app/api/category/${params?.category}`);
     const products = await res.json();
 
     return { props: { products } };

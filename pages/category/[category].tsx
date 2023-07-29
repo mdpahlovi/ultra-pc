@@ -10,7 +10,7 @@ export default function CategoryProduct({ products }: { products: IProduct[] }) 
 }
 
 export const getStaticPaths: GetStaticPaths = async () => {
-    const res = await fetch("http://localhost:3000/api/category");
+    const res = await fetch("https://ultra-pc-server.vercel.app/api/category");
     const categories = await res.json();
 
     const paths = categories.map((category: ICategory) => ({
@@ -21,7 +21,7 @@ export const getStaticPaths: GetStaticPaths = async () => {
 };
 
 export const getStaticProps: GetStaticProps = async ({ params }) => {
-    const res = await fetch(`http://localhost:3000/api/category/${params?.category}`);
+    const res = await fetch(`https://ultra-pc-server.vercel.app/api/category/${params?.category}`);
     const products = await res.json();
 
     return { props: { products } };

@@ -3,7 +3,6 @@ import { ICategory } from "../categories/category.interface";
 import { IUser } from "../users/user.interface";
 
 export type IStatus = "In Stock" | "Out of stock";
-export const statusConstant: IStatus[] = ["In Stock", "Out of stock"];
 
 export interface IReviews {
     user: Types.ObjectId | IUser;

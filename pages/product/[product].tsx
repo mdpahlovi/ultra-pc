@@ -71,7 +71,7 @@ export default function ProductDetails({ product }: { product: IProduct }) {
 }
 
 export const getStaticPaths: GetStaticPaths = async () => {
-    const res = await fetch("http://localhost:3000/api/product");
+    const res = await fetch("https://ultra-pc-server.vercel.app/api/product");
     const products = await res.json();
 
     const paths = products.map((product: IProduct) => ({
@@ -82,7 +82,7 @@ export const getStaticPaths: GetStaticPaths = async () => {
 };
 
 export const getStaticProps: GetStaticProps = async ({ params }) => {
-    const res = await fetch(`http://localhost:3000/api/product/${params?.product}`);
+    const res = await fetch(`https://ultra-pc-server.vercel.app/api/product/${params?.product}`);
     const product = await res.json();
 
     return { props: { product } };

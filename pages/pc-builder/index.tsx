@@ -33,7 +33,7 @@ export default function PCBuilder({ categories }: { categories: ICategory[] }) {
 }
 
 export const getServerSideProps: GetServerSideProps = async () => {
-    const res = await fetch(`http://localhost:3000/api/category`);
+    const res = await fetch(`https://ultra-pc-server.vercel.app/api/category`);
     const categories = await res.json();
 
     return { props: { categories } };

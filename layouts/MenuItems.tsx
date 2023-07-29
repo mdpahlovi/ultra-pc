@@ -14,7 +14,7 @@ export default function MenuItems({ vertical }: { vertical?: boolean }) {
     const [categories, setCategories] = useState([]);
 
     useEffect(() => {
-        axios.get("/api/category").then((res) => setCategories(res.data));
+        axios.get("https://ultra-pc-server.vercel.app/api/category").then((res) => setCategories(res.data));
     }, []);
 
     const categoryLinks = categories.map(({ _id, name }) => navLink(`/category/${_id}`, name));

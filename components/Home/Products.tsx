@@ -1,9 +1,10 @@
-import { Card } from "antd";
+import { IProduct } from "@/model/products/product.interface";
+import ProductCard from "../Product/ProductCard";
 
-export default function Products() {
+export default function Products({ products }: { products: IProduct[] }) {
     return (
-        <Card bordered={false}>
-            <div>Pahlovi</div>
-        </Card>
+        <div className="products">
+            {products?.length && products.map((product) => <ProductCard key={product?._id} product={product} />)}
+        </div>
     );
 }

@@ -1,3 +1,4 @@
+import random from "mongoose-simple-random";
 import { Schema, model, models } from "mongoose";
 import { type IProduct, type ProductModel, statusConstant } from "./product.interface";
 
@@ -25,6 +26,8 @@ const productSchema = new Schema<IProduct>(
     },
     { timestamps: true, versionKey: false }
 );
+
+productSchema.plugin(random);
 
 const Product = models.product || model<IProduct, ProductModel>("product", productSchema);
 

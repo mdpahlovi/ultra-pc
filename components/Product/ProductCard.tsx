@@ -5,8 +5,9 @@ import { Badge, Button, Card, Tag } from "antd";
 import calculateAverage from "@/helpers/calculateAverage";
 import { IProduct } from "@/model/products/product.interface";
 import { ICategory } from "@/model/categories/category.interface";
+import AddToBuilder from "../Common/AddToBuilder";
 
-export default function ProductCard({ product }: { product: IProduct }) {
+export default function ProductCard({ product, select }: { product: IProduct; select?: boolean }) {
     const { _id, name, image, category, price, status, reviews } = product;
 
     let rating;
@@ -28,11 +29,15 @@ export default function ProductCard({ product }: { product: IProduct }) {
                 <Tag color={status === "In Stock" ? "#87d068" : "#f50"} style={{ margin: "10px 0 16px" }}>
                     {status}
                 </Tag>
-                <Link href={`/product/${_id}`} style={{ display: "block" }}>
-                    <Button size="large" shape="round" style={{ backgroundColor: "black", color: "white" }} block>
-                        See Details
-                    </Button>
-                </Link>
+                {select ? (
+                    <AddToBuilder />
+                ) : (
+                    <Link href={`/product/${_id}`} style={{ display: "block" }}>
+                        <Button size="large" shape="round" style={{ backgroundColor: "black", color: "white" }} block>
+                            See Details
+                        </Button>
+                    </Link>
+                )}
             </Card>
         </Badge.Ribbon>
     );

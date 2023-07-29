@@ -42,7 +42,7 @@ export default function Hero() {
                                 </Button>
                             </div>
                         </div>
-                        <Image src="/images/[1]-hero.png" alt="" className={styles.heroImage} width={600} height={360} />
+                        <Image src="/images/[1]-hero.png" alt="" width={600} height={360} />
                     </div>
                 );
             })}

@@ -1,34 +1,53 @@
 import { createSlice } from "@reduxjs/toolkit";
 import type { PayloadAction } from "@reduxjs/toolkit";
 import type { RootState } from "../../store";
+import { IProduct } from "@/model/products/product.interface";
 
 interface PcBuilderState {
-    value: number;
+    processor: IProduct | null;
+    motherboard: IProduct | null;
+    ram: IProduct | null;
+    psu: IProduct | null;
+    sdCard: IProduct | null;
+    monitor: IProduct | null;
 }
 
 const initialState: PcBuilderState = {
-    value: 0,
+    processor: null,
+    motherboard: null,
+    ram: null,
+    psu: null,
+    sdCard: null,
+    monitor: null,
 };
 
 export const pcBuilderSlice = createSlice({
     name: "pcBuilder",
     initialState,
     reducers: {
-        increment: (state) => {
-            state.value += 1;
+        addProcessor: (state, action: PayloadAction<IProduct>) => {
+            return { ...state, processor: action.payload };
         },
-        decrement: (state) => {
-            state.value -= 1;
+        addMotherboard: (state, action: PayloadAction<IProduct>) => {
+            return { ...state, motherboard: action.payload };
         },
-        // Use the PayloadAction type to declare the contents of `action.payload`
-        incrementByAmount: (state, action: PayloadAction<number>) => {
-            state.value += action.payload;
+        addRam: (state, action: PayloadAction<IProduct>) => {
+            return { ...state, ram: action.payload };
+        },
+        addPsu: (state, action: PayloadAction<IProduct>) => {
+            return { ...state, psu: action.payload };
+        },
+        addSdCard: (state, action: PayloadAction<IProduct>) => {
+            return { ...state, sdCard: action.payload };
+        },
+        addMonitor: (state, action: PayloadAction<IProduct>) => {
+            return { ...state, monitor: action.payload };
         },
     },
 });
 
-export const { increment, decrement, incrementByAmount } = pcBuilderSlice.actions;
+export const { addProcessor, addMotherboard, addRam, addPsu, addSdCard, addMonitor } = pcBuilderSlice.actions;
 
-export const selectCount = (state: RootState) => state.pcBuilder.value;
+export const selectCount = (state: RootState) => state.pcBuilder;
 
 export default pcBuilderSlice.reducer;

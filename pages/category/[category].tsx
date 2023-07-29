@@ -4,7 +4,6 @@ import type { GetStaticPaths, GetStaticProps } from "next";
 import ProductCard from "@/components/Product/ProductCard";
 import type { IProduct } from "@/model/products/product.interface";
 import type { ICategory } from "@/model/categories/category.interface";
-import styles from "@/styles/Category.module.css";
 
 export default function CategoryProduct({ products }: { products: IProduct[] }) {
     return <>{products?.length && products.map((product) => <ProductCard key={product?._id} product={product} />)}</>;
@@ -30,7 +29,7 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
 
 CategoryProduct.getLayout = function getLayout(page: ReactElement) {
     return (
-        <Main title="Products - Ultra Pc" className={styles.products}>
+        <Main title="Products - Ultra Pc" className="products">
             {page}
         </Main>
     );

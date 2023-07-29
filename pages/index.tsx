@@ -5,16 +5,15 @@ import type { GetStaticProps } from "next";
 import { ICategory } from "@/model/categories/category.interface";
 import Products from "@/components/Home/Products";
 import Categories from "@/components/Home/Categories";
+import { IProduct } from "@/model/products/product.interface";
 
-export default function Home({ categories }: { categories: ICategory[] }) {
+export default function Home({ categories, products }: { categories: ICategory[]; products: IProduct[] }) {
     return (
         <>
             <Hero />
             <div style={{ padding: "50px 0" }}>
                 <h2 style={{ marginBottom: "20px", textAlign: "center" }}>Featured Products</h2>
-                <div style={{ display: "flex", flexWrap: "wrap", justifyContent: "center", gap: "20px" }}>
-                    <Products />
-                </div>
+                <Products products={products} />
             </div>
             <div>
                 <h2 style={{ marginBottom: "20px", textAlign: "center" }}>Featured Categories</h2>
@@ -27,9 +26,12 @@ export default function Home({ categories }: { categories: ICategory[] }) {
 }
 
 export const getStaticProps: GetStaticProps = async () => {
-    const res = await fetch(`http://localhost:3000/api/category`);
-    const categories = await res.json();
-    return { props: { categories } };
+    const res1 = await fetch(`http://localhost:3000/api/category`);
+    const res2 = await fetch(`http://localhost:3000/api/product/random`);
+
+    const categories = await res1.json();
+    const products = await res2.json();
+    return { props: { categories, products } };
 };
 
 Home.getLayout = function getLayout(page: ReactElement) {

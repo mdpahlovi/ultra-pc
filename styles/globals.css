@@ -8,12 +8,37 @@
 }
 
 main {
-    padding: 12px;
+    padding: 24px;
     min-height: calc(100vh - 128px);
+}
+
+.secHeader {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.horizontalLine {
+    margin-bottom: 4px;
+    height: 4px;
+    background: #000;
+    width: 100%;
+}
+.infoText {
+    display: flex;
+    justify-content: space-between;
+    font-size: 14px;
+}
+
+.spaceT {
+    padding-top: 24px;
 }
 
 .ant-menu-horizontal {
     border-bottom: none;
+}
+
+.ant-layout-header {
+    padding-inline: 24px;
 }
 
 .products {
@@ -22,9 +47,15 @@ main {
     gap: 24px;
 }
 
-@media only screen and (min-width: 556px) {
+@media only screen and (min-width: 576px) {
     main {
         padding: 50px;
+    }
+    .spaceT {
+        padding-top: 50px;
+    }
+    .ant-layout-header {
+        padding-inline: 50px;
     }
 }
 

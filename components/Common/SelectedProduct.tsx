@@ -1,4 +1,5 @@
 import Image from "next/image";
+import InfoText from "./InfoText";
 import { useAppSelector } from "@/redux/hooks";
 
 export default function SelectedProduct({ name }: { name: string }) {
@@ -27,15 +28,14 @@ export default function SelectedProduct({ name }: { name: string }) {
     }
 
     if (product) {
+        const { image, name, price, reviews } = product;
+
         return (
             <div style={{ marginTop: "16px", display: "flex", gap: "20px" }}>
-                <Image src={product?.image} alt="" width={100} height={100} />
+                <Image src={image} alt="" width={100} height={100} />
                 <div>
-                    <h3 style={{ marginBottom: "10px" }}>{product?.name}</h3>
-                    <div style={{ marginBottom: "4px", height: "4px", background: "#000", width: "100%" }} />
-                    <div style={{ display: "flex", justifyContent: "space-between", fontSize: "14px" }}>
-                        <span>Price: ${product?.price}</span>
-                    </div>
+                    <h3 style={{ marginBottom: "10px" }}>{name}</h3>
+                    <InfoText price={price} reviews={reviews} />
                 </div>
             </div>
         );

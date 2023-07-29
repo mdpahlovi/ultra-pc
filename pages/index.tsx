@@ -2,25 +2,25 @@ import Main from "@/layouts/Main";
 import Hero from "@/components/Home/Hero";
 import type { ReactElement } from "react";
 import type { GetStaticProps } from "next";
-import { ICategory } from "@/model/categories/category.interface";
+import Section from "@/components/Common/Section";
 import Products from "@/components/Home/Products";
 import Categories from "@/components/Home/Categories";
-import { IProduct } from "@/model/products/product.interface";
+import type { IProduct } from "@/model/products/product.interface";
+import type { ICategory } from "@/model/categories/category.interface";
+import styles from "@/styles/Home.module.css";
 
 export default function Home({ categories, products }: { categories: ICategory[]; products: IProduct[] }) {
     return (
         <>
             <Hero />
-            <div style={{ padding: "50px 0" }}>
-                <h2 style={{ marginBottom: "20px", textAlign: "center" }}>Featured Products</h2>
+            <Section title="Featured Products">
                 <Products products={products} />
-            </div>
-            <div>
-                <h2 style={{ marginBottom: "20px", textAlign: "center" }}>Featured Categories</h2>
-                <div style={{ display: "flex", flexWrap: "wrap", justifyContent: "center", gap: "20px" }}>
+            </Section>
+            <Section title="Featured Categories">
+                <div className={styles.categories}>
                     <Categories categories={categories} />
                 </div>
-            </div>
+            </Section>
         </>
     );
 }

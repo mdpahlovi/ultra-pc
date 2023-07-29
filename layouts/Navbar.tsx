@@ -1,3 +1,4 @@
+import Link from "next/link";
 import Image from "next/image";
 import { useState } from "react";
 import { Button, Drawer, Row } from "antd";
@@ -11,7 +12,9 @@ export default function Navbar() {
     return (
         <>
             <Row style={{ width: "100%" }} justify="space-between" align="middle">
-                <Image src="/logo.png" alt="" width={144} height={40} />
+                <Link href="/" style={{ display: "flex", alignItems: "center" }}>
+                    <Image src="/logo.png" alt="" width={144} height={40} />
+                </Link>
                 <div className={styles.menuItems}>
                     <MenuItems />
                 </div>

@@ -1,23 +1,18 @@
 import Image from "next/image";
 import Main from "@/layouts/Main";
-import { Avatar, Badge, List, Tag } from "antd";
+import { Avatar, Badge, List } from "antd";
 import type { ReactElement } from "react";
 import type { GetStaticPaths, GetStaticProps } from "next";
-import calculateAverage from "@/helpers/calculateAverage";
 import type { IProduct } from "@/model/products/product.interface";
 import type { ICategory } from "@/model/categories/category.interface";
+import type { IUser } from "@/model/users/user.interface";
+import Section from "@/components/Common/Section";
+import InfoText from "@/components/Common/InfoText";
+import Status from "@/components/Common/Status";
 import styles from "@/styles/Product.module.css";
-import { IUser } from "@/model/users/user.interface";
 
 export default function ProductDetails({ product }: { product: IProduct }) {
-    const { _id, name, image, category, price, status, description, keyFeature, reviews } = product;
-
-    let rating;
-    if (reviews.length === 0) {
-        rating = 0;
-    } else {
-        rating = calculateAverage(reviews.map((review) => review.rating));
-    }
+    const { name, image, category, price, status, description, keyFeature, reviews } = product;
 
     return (
         <>
@@ -27,16 +22,8 @@ export default function ProductDetails({ product }: { product: IProduct }) {
                 </Badge.Ribbon>
                 <div>
                     <h2 style={{ marginBottom: "14px" }}>{name}</h2>
-                    <div style={{ marginBottom: "4px", height: "4px", background: "#000", width: "100%" }} />
-                    <div style={{ display: "flex", justifyContent: "space-between", fontSize: "14px" }}>
-                        <span>Price: ${price}</span>
-                        <span>
-                            Rating: {rating} ({reviews.length})
-                        </span>
-                    </div>
-                    <Tag color={status === "In Stock" ? "#87d068" : "#f50"} style={{ margin: "16px 0" }}>
-                        {status}
-                    </Tag>
+                    <InfoText price={price} reviews={reviews} />
+                    <Status status={status} />
                     <p>{description}</p>
                     <div style={{ marginTop: "16px", display: "flex", flexDirection: "column", gap: "4px" }}>
                         <h4>Key Feature : </h4>
@@ -44,10 +31,9 @@ export default function ProductDetails({ product }: { product: IProduct }) {
                     </div>
                 </div>
             </div>
-            <div style={{ paddingTop: "50px" }}>
-                <h2 style={{ marginBottom: "20px", textAlign: "center" }}>Reviews</h2>
+            <Section title="Reviews">
                 <List
-                    style={{ maxWidth: "768px", margin: "0 auto" }}
+                    style={{ maxWidth: "768px", marginInline: "auto" }}
                     itemLayout="horizontal"
                     dataSource={reviews}
                     renderItem={({ user, rating, comment }) => (
@@ -65,7 +51,7 @@ export default function ProductDetails({ product }: { product: IProduct }) {
                         </List.Item>
                     )}
                 />
-            </div>
+            </Section>
         </>
     );
 }

@@ -4,9 +4,9 @@ import Main from "@/layouts/Main";
 import type { ReactElement } from "react";
 import type { GetServerSideProps } from "next";
 import type { ICategory } from "@/model/categories/category.interface";
-import styles from "@/styles/PCBuilder.module.css";
-import SelectedProduct from "@/components/Common/SelectedProduct";
 import CompleteBuild from "@/components/Common/CompleteBuild";
+import SelectedProduct from "@/components/Common/SelectedProduct";
+import styles from "@/styles/PCBuilder.module.css";
 
 export default function PCBuilder({ categories }: { categories: ICategory[] }) {
     const parts = categories.filter((category) => category.name !== "Others");
@@ -16,7 +16,7 @@ export default function PCBuilder({ categories }: { categories: ICategory[] }) {
             {parts?.length &&
                 parts.map(({ _id, name, products }) => (
                     <Card key={_id} bordered={false}>
-                        <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", gap: "20px" }}>
+                        <div className={styles.category}>
                             <h3>
                                 {name} ({products?.length})
                             </h3>

@@ -25,22 +25,22 @@ export const pcBuilderSlice = createSlice({
     name: "pcBuilder",
     initialState,
     reducers: {
-        addProcessor: (state, action: PayloadAction<IProduct>) => {
+        toggleProcessor: (state, action: PayloadAction<IProduct | null>) => {
             return { ...state, processor: action.payload };
         },
-        addMotherboard: (state, action: PayloadAction<IProduct>) => {
+        toggleMotherboard: (state, action: PayloadAction<IProduct | null>) => {
             return { ...state, motherboard: action.payload };
         },
-        addRam: (state, action: PayloadAction<IProduct>) => {
+        toggleRam: (state, action: PayloadAction<IProduct | null>) => {
             return { ...state, ram: action.payload };
         },
-        addPsu: (state, action: PayloadAction<IProduct>) => {
+        togglePsu: (state, action: PayloadAction<IProduct | null>) => {
             return { ...state, psu: action.payload };
         },
-        addSdCard: (state, action: PayloadAction<IProduct>) => {
+        toggleSdCard: (state, action: PayloadAction<IProduct | null>) => {
             return { ...state, sdCard: action.payload };
         },
-        addMonitor: (state, action: PayloadAction<IProduct>) => {
+        toggleMonitor: (state, action: PayloadAction<IProduct | null>) => {
             return { ...state, monitor: action.payload };
         },
         removeAll: () => {
@@ -49,7 +49,7 @@ export const pcBuilderSlice = createSlice({
     },
 });
 
-export const { addProcessor, addMotherboard, addRam, addPsu, addSdCard, addMonitor, removeAll } = pcBuilderSlice.actions;
+export const { toggleProcessor, toggleMotherboard, toggleRam, togglePsu, toggleSdCard, toggleMonitor, removeAll } = pcBuilderSlice.actions;
 
 export const selectCount = (state: RootState) => state.pcBuilder;
 

@@ -1,6 +1,9 @@
 import Image from "next/image";
 import InfoText from "./InfoText";
 import { useAppSelector } from "@/redux/hooks";
+import styles from "@/styles/PCBuilder.module.css";
+import RemoveToBuilder from "./RemoveToBuilder";
+import type { ICategory } from "@/model/categories/category.interface";
 
 export default function SelectedProduct({ name }: { name: string }) {
     const { processor, motherboard, ram, psu, sdCard, monitor } = useAppSelector((state) => state.pcBuilder);
@@ -28,15 +31,16 @@ export default function SelectedProduct({ name }: { name: string }) {
     }
 
     if (product) {
-        const { image, name, price, reviews } = product;
+        const { image, name, category, price, reviews } = product;
 
         return (
-            <div style={{ marginTop: "16px", display: "flex", gap: "20px" }}>
+            <div className={styles.selectProduct}>
                 <Image src={image} alt="" width={100} height={100} />
-                <div>
+                <div className={styles.selectProductDetails}>
                     <h3 style={{ marginBottom: "10px" }}>{name}</h3>
                     <InfoText price={price} reviews={reviews} />
                 </div>
+                <RemoveToBuilder name={(category as ICategory).name} />
             </div>
         );
     }

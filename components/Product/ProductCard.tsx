@@ -30,7 +30,7 @@ export default function ProductCard({ product, select }: { product: IProduct; se
                     {status}
                 </Tag>
                 {select ? (
-                    <AddToBuilder />
+                    <AddToBuilder product={product} />
                 ) : (
                     <Link href={`/product/${_id}`} style={{ display: "block" }}>
                         <Button size="large" shape="round" style={{ backgroundColor: "black", color: "white" }} block>

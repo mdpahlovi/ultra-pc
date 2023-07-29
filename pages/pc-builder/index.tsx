@@ -5,6 +5,8 @@ import type { ReactElement } from "react";
 import type { GetServerSideProps } from "next";
 import type { ICategory } from "@/model/categories/category.interface";
 import styles from "@/styles/PCBuilder.module.css";
+import SelectedProduct from "@/components/Common/SelectedProduct";
+import CompleteBuild from "@/components/Common/CompleteBuild";
 
 export default function PCBuilder({ categories }: { categories: ICategory[] }) {
     const parts = categories.filter((category) => category.name !== "Others");
@@ -22,8 +24,10 @@ export default function PCBuilder({ categories }: { categories: ICategory[] }) {
                                 <Button shape="round">Select</Button>
                             </Link>
                         </div>
+                        <SelectedProduct name={name} />
                     </Card>
                 ))}
+            <CompleteBuild />
         </>
     );
 }

@@ -43,10 +43,13 @@ export const pcBuilderSlice = createSlice({
         addMonitor: (state, action: PayloadAction<IProduct>) => {
             return { ...state, monitor: action.payload };
         },
+        removeAll: () => {
+            return { processor: null, motherboard: null, ram: null, psu: null, sdCard: null, monitor: null };
+        },
     },
 });
 
-export const { addProcessor, addMotherboard, addRam, addPsu, addSdCard, addMonitor } = pcBuilderSlice.actions;
+export const { addProcessor, addMotherboard, addRam, addPsu, addSdCard, addMonitor, removeAll } = pcBuilderSlice.actions;
 
 export const selectCount = (state: RootState) => state.pcBuilder;
 

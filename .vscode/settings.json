@@ -5,7 +5,6 @@
         ".eslintrc.json": true,
         ".gitignore": true,
         "next-env.d.ts": true,
-        "README.md": true,
         "tsconfig.json": true,
         "yarn.lock": true
     }

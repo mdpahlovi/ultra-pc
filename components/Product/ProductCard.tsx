@@ -1,10 +1,9 @@
-import React from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { Badge, Button, Card, Tag } from "antd";
 import calculateAverage from "@/helpers/calculateAverage";
-import { IProduct } from "@/model/products/product.interface";
-import { ICategory } from "@/model/categories/category.interface";
+import type { IProduct } from "@/model/products/product.interface";
+import type { ICategory } from "@/model/categories/category.interface";
 import AddToBuilder from "../Common/AddToBuilder";
 
 export default function ProductCard({ product, select }: { product: IProduct; select?: boolean }) {

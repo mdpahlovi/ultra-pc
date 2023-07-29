@@ -1,9 +1,9 @@
 import { Button } from "antd";
+import { useRouter } from "next/router";
+import { useAppDispatch } from "@/redux/hooks";
 import type { IProduct } from "@/model/products/product.interface";
 import type { ICategory } from "@/model/categories/category.interface";
-import { useAppDispatch } from "@/redux/hooks";
 import { addMonitor, addMotherboard, addProcessor, addPsu, addRam, addSdCard } from "@/redux/features/pcBuilder/pcBuilderSlice";
-import { useRouter } from "next/router";
 
 export default function AddToBuilder({ product }: { product: IProduct }) {
     const { push } = useRouter();

@@ -1,5 +1,5 @@
-import { IProduct } from "@/model/products/product.interface";
 import ProductCard from "../Product/ProductCard";
+import type { IProduct } from "@/model/products/product.interface";
 
 export default function Products({ products }: { products: IProduct[] }) {
     return (

@@ -1,38 +1,28 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+## Ultra PC - A Simple PC Builder website using Next.js and Ant Design
 
-## Getting Started
+#### LiveLink: https://ultra-pc.vercel.app/
 
-First, run the development server:
+#### Client GitHub Repo: https://github.com/mdpahlovi/ultra-pc
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-```
+#### Server GitHub Repo: https://github.com/mdpahlovi/ultra-pc-server
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+### Layout: Responsive Navbar & Footer. With Products Drop-down.
 
-You can start editing the page by modifying `pages/index.tsx`. The page auto-updates as you edit the file.
+### Home Page(SSG): Slidable hero section, Random 6 product as "Featured Products", and a category section as "Featured Categories"
 
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.ts`.
+Click on any Product "See Details" Button Redirect to Product Details page.
+Click on any Category Name Redirect to Category Details page.
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
+### Category Details Page (SSG): Show the product specific of that category.
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+Click on any Product "See Details" Button Redirect to Product Details page.
 
-## Learn More
+### Product Details Page (SSG): You can see the complete Product Details.
 
-To learn more about Next.js, take a look at the following resources:
+### Login Page: Google And GitHub login options available. If you want to login using email & password. Go-to to sign up page by click "Or Signup"
 
--   [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
--   [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+### Signup Page: You have to provide name, email, password. Submit by clicking "Signup" Button. After successfully signup you will redirect to login page
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+Then you can login by using your email and password.
 
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+### PC Builder Page (SSR). After login you can access PC Builder page. Here you you see all category of components to build a PC, For select a component of a category click "Select" button. Then you will redirect to Category Details page. Here you chooses a component by clicking "Add To Builder". Then you will again redirect to PC Builder page. Now you can see your selected component under the category name. After selecting all component you can complete your build by clicking "Complete Build" button.

@@ -1,5 +1,5 @@
+import Image from "next/image";
 import { useAppSelector } from "@/redux/hooks";
-import { Image } from "antd";
 
 export default function SelectedProduct({ name }: { name: string }) {
     const { processor, motherboard, ram, psu, sdCard, monitor } = useAppSelector((state) => state.pcBuilder);

@@ -1,7 +1,7 @@
 import { Card } from "antd";
 import Link from "next/link";
 import Image from "next/image";
-import { ICategory } from "@/model/categories/category.interface";
+import type { ICategory } from "@/model/categories/category.interface";
 
 export default function Categories({ categories }: { categories: ICategory[] }) {
     return (

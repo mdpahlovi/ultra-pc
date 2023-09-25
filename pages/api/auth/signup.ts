@@ -1,12 +1,11 @@
 import { hash } from "bcryptjs";
 import User from "@/model/users/user";
-import connectMongo from "@/helpers/connection";
+import { connect } from "@/helpers/connection";
 import type { NextApiRequest, NextApiResponse } from "next";
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
-    connectMongo();
+    connect.mongodb();
 
-    // only post method is accepted
     if (req.method === "POST") {
         const { name, email, password } = req.body;
         if (!name || !email || !password) return res.status(404).json({ status: false, message: "Don't have form data...!" });
@@ -20,8 +19,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
             await User.findOneAndUpdate({ email }, { password: hashedPassword }, { new: true });
             return res.status(201).json({ status: true, message: "User Created Successfully...!" });
         } else {
-            const newUser = new User({ name, email, password: hashedPassword });
-            await newUser.save();
+            await new User({ name, email, password: hashedPassword }).save();
             return res.status(201).json({ status: true, message: "User Created Successfully...!" });
         }
     } else {

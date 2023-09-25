@@ -17,17 +17,9 @@ export default function LoginPage() {
         if (status?.error) alert(status.error);
     };
 
-    const googleLogin = () => {
-        signIn("google", {
-            callbackUrl: "/",
-        });
-    };
+    const googleLogin = () => signIn("google", { callbackUrl: "/" });
 
-    const githubLogin = () => {
-        signIn("github", {
-            callbackUrl: "/",
-        });
-    };
+    const githubLogin = () => signIn("github", { callbackUrl: "/" });
 
     return (
         <div className={styles.form}>

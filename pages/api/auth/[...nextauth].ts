@@ -1,18 +1,37 @@
 import NextAuth from "next-auth";
 import { compare } from "bcryptjs";
 import User from "@/model/users/user";
-import connectMongo from "@/helpers/connection";
-import GithubProvider from "next-auth/providers/github";
-import GoogleProvider from "next-auth/providers/google";
+import { encode } from "next-auth/jwt";
+import { connect } from "@/helpers/connection";
+import GithubProvider, { type GithubProfile } from "next-auth/providers/github";
+import GoogleProvider, { type GoogleProfile } from "next-auth/providers/google";
 import CredentialsProvider from "next-auth/providers/credentials";
 
 export default NextAuth({
     providers: [
         GithubProvider({
+            profile(profile: GithubProfile) {
+                return {
+                    id: profile.id.toString(),
+                    name: profile.name ?? profile.login,
+                    image: profile.avatar_url,
+                    email: profile.email,
+                    role: profile.role ?? "user",
+                };
+            },
             clientId: process.env.GITHUB_ID,
             clientSecret: process.env.GITHUB_SECRET,
         }),
         GoogleProvider({
+            profile(profile: GoogleProfile) {
+                return {
+                    id: profile.sub,
+                    name: profile.name,
+                    image: profile.picture,
+                    email: profile.email,
+                    role: profile.role ?? "user",
+                };
+            },
             clientId: process.env.GOOGLE_CLIENT_ID,
             clientSecret: process.env.GOOGLE_CLIENT_SECRET,
         }),
@@ -20,19 +39,14 @@ export default NextAuth({
             type: "credentials",
             credentials: {},
             async authorize(credentials, req) {
-                connectMongo();
-
+                connect.mongodb();
                 const { email, password } = credentials as { email: string; password: string };
 
                 const user = await User.findOne({ email: email });
-                if (!user) {
-                    throw new Error("User Not Found...!");
-                }
+                if (!user) throw new Error("User Not Found...!");
 
-                const checkPassword = await compare(password, user.password);
-                if (!checkPassword) {
-                    throw new Error("Password doesn't match...!");
-                }
+                const isPasswordMatch = await compare(password, user.password);
+                if (!isPasswordMatch) throw new Error("Password doesn't match...!");
 
                 return user;
             },
@@ -42,39 +56,28 @@ export default NextAuth({
         signIn: "/login",
     },
     callbacks: {
-        async signIn({ account, profile }) {
+        async signIn({ user, account }) {
             if (account?.type === "oauth") {
-                connectMongo();
+                connect.mongodb();
+                const payload = { name: user?.name, email: user?.email, image: user?.image, provider: account.provider };
 
-                const user = await User.findOne({ email: profile?.email });
-                if (user?._id) {
-                    return true;
-                } else {
-                    const newUser = new User({
-                        name: profile?.name,
-                        email: profile?.email,
-                        image: profile?.picture,
-                        provider: account.provider,
-                    });
+                let auth = await User.findOne({ email: user?.email });
+                if (!auth) auth = await new User(payload).save();
 
-                    await newUser.save();
-                    return true;
-                }
+                user.id = auth._id;
+                return true;
             }
 
             return true;
         },
-        async jwt({ token }) {
-            connectMongo();
-
-            const user = await User.findOne({ email: token.email }).select("-password");
-            if (!user) throw new Error("User Not Found...!");
-
-            token.user = user;
+        async jwt({ token, user }) {
+            if (user) token.role = user.role;
             return token;
         },
         async session({ session, token }) {
-            session.user = token.user;
+            const secret = process.env.NEXTAUTH_SECRET;
+            session.token = await encode({ token, secret });
+            if (session?.user) session.user.role = token.role;
             return session;
         },
     },

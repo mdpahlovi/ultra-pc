@@ -4,7 +4,9 @@
         "node_modules": true,
         ".eslintrc.json": true,
         ".gitignore": true,
+        ".prettierrc": true,
         "next-env.d.ts": true,
+        "postcss.config.js": true,
         "tsconfig.json": true,
         "yarn.lock": true
     }

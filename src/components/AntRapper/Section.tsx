@@ -1,7 +1,7 @@
 "use client";
 
-import { SectionProps } from "@/types";
 import { theme } from "antd";
+import { SectionProps } from "@/types";
 
 export default function Section({ children, title, className }: SectionProps) {
     const { token } = theme.useToken();

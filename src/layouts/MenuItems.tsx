@@ -1,8 +1,9 @@
 import menuItem from "@/helpers/menuItem";
 import { usePathname } from "next/navigation";
-import { Menu, Button, type MenuProps } from "antd";
+import { UserOutlined } from "@ant-design/icons";
 import { useSession, signOut } from "next-auth/react";
 import useCategoryMenu from "@/hooks/useCategoryMenu";
+import { Menu, Button, type MenuProps, Avatar } from "antd";
 import type { ItemType } from "antd/es/menu/hooks/useItems";
 
 export default function MenuItems({ vertical }: { vertical?: boolean }) {
@@ -12,13 +13,20 @@ export default function MenuItems({ vertical }: { vertical?: boolean }) {
 
     const isAuthenticated = (): ItemType => {
         if (data?.user) {
-            return menuItem(
-                "/signup",
-                <Button type="primary" shape="round" onClick={() => signOut()} danger>
-                    SignOut
-                </Button>,
-                true,
-            );
+            return {
+                key: "/dashboard",
+                label: <Avatar src={data?.user?.image} icon={<UserOutlined />} />,
+                children: [
+                    menuItem("/dashboard", "Dashboard"),
+                    menuItem(
+                        "/signup",
+                        <Button type="primary" shape="round" onClick={() => signOut()} danger>
+                            SignOut
+                        </Button>,
+                        true,
+                    ),
+                ],
+            };
         } else {
             return menuItem(
                 "/login",
@@ -45,5 +53,9 @@ export default function MenuItems({ vertical }: { vertical?: boolean }) {
         isAuthenticated(),
     ];
 
-    return <Menu mode={vertical ? "vertical" : "horizontal"} selectedKeys={[pathname]} items={items} />;
+    return (
+        <div className={data?.user ? "w-[372px]" : "w-[476.5px]"}>
+            <Menu mode={vertical ? "vertical" : "horizontal"} selectedKeys={[pathname]} items={items} />
+        </div>
+    );
 }

@@ -3,9 +3,10 @@
 import Link from "next/link";
 import Image from "next/image";
 import { useState } from "react";
+import MenuItems from "./MenuItems";
 import { Button, Drawer } from "antd";
 import { MenuOutlined } from "@ant-design/icons";
-import MenuItems from "./MenuItems";
+import ThemeToggle from "@/components/AntRapper/ThemeToggle";
 
 export default function Navbar() {
     const [open, setOpen] = useState(false);
@@ -16,12 +17,16 @@ export default function Navbar() {
                 <Link href="/" className="flex-center">
                     <Image src="/logo.png" alt="" width={144} height={40} />
                 </Link>
-                <div className="hidden w-[480px] lg:block">
+                <div className="hidden items-center justify-center gap-4 lg:flex">
                     <MenuItems />
+                    <ThemeToggle />
                 </div>
-                <Button shape="circle" onClick={() => setOpen(true)} className="lg:hidden">
-                    <MenuOutlined />
-                </Button>
+                <div className="flex-center gap-8 lg:hidden">
+                    <ThemeToggle />
+                    <Button shape="circle" onClick={() => setOpen(true)}>
+                        <MenuOutlined />
+                    </Button>
+                </div>
             </nav>
             <Drawer title="Menu" placement="right" open={open} onClose={() => setOpen(false)}>
                 <MenuItems vertical />

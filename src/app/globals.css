@@ -22,3 +22,7 @@
         @apply flex items-center justify-center;
     }
 }
+
+.css-dev-only-do-not-override-123o3gz.ant-menu-horizontal {
+    border-bottom: 0;
+}

@@ -1,4 +1,6 @@
 import { IProduct } from "@/model/products/product.interface";
+import { MappingAlgorithm } from "antd";
+import { type } from "os";
 
 export type BuilderState = {
     processor: IProduct | null;
@@ -14,4 +16,12 @@ export type BuilderState = {
     toggleSdCard: (payload: IProduct | null) => void;
     toggleMonitor: (payload: IProduct | null) => void;
     removeAll: () => void;
+};
+
+export type Theme = "light" | "dark";
+
+export type ThemeState = {
+    theme: string;
+    themeValue: MappingAlgorithm;
+    toggleTheme: (payload: Theme) => void;
 };

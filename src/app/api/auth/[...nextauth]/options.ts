@@ -1,7 +1,7 @@
 import { compare } from "bcryptjs";
 import User from "@/model/users/user";
 import { encode } from "next-auth/jwt";
-import { connect } from "@/helpers/connection";
+import connection from "@/helpers/connection";
 import type { NextAuthOptions } from "next-auth";
 import GithubProvider, { type GithubProfile } from "next-auth/providers/github";
 import GoogleProvider, { type GoogleProfile } from "next-auth/providers/google";
@@ -39,7 +39,7 @@ const options: NextAuthOptions = {
             type: "credentials",
             credentials: {},
             async authorize(credentials, req) {
-                connect.mongodb();
+                await connection();
                 const { email, password } = credentials as { email: string; password: string };
 
                 const user = await User.findOne({ email: email });
@@ -58,7 +58,7 @@ const options: NextAuthOptions = {
     callbacks: {
         async signIn({ user, account }) {
             if (account?.type === "oauth") {
-                connect.mongodb();
+                await connection();
                 const payload = { name: user?.name, email: user?.email, image: user?.image, provider: account.provider };
 
                 let auth = await User.findOne({ email: user?.email });

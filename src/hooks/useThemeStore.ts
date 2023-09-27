@@ -13,7 +13,7 @@ const useThemeStore = create<ThemeState>()(
                 toggleTheme: payload =>
                     set({ theme: payload, themeValue: payload === "light" ? theme.defaultAlgorithm : theme.darkAlgorithm }),
             }),
-            { name: "builder-storage" },
+            { name: "theme-storage" },
         ),
     ),
 );

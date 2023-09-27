@@ -1,11 +1,11 @@
 import { hash } from "bcryptjs";
 import User from "@/model/users/user";
-import { connect } from "@/helpers/connection";
+import connection from "@/helpers/connection";
 import type { NextRequest } from "next/server";
 import nextResponse from "@/helpers/nextResponse";
 
 export async function POST(req: NextRequest) {
-    connect.mongodb();
+    await connection();
     const { name, email, password } = await req.json();
     const hashedPassword = await hash(password, 12);
 

@@ -1,12 +1,14 @@
 import Link from "next/link";
 import { Button, Card } from "antd";
-import { get } from "@/helpers/fetch";
+import { getCategories } from "@/helpers/fetch";
 import CompleteBuild from "@/components/Common/CompleteBuild";
 import SelectedProduct from "@/components/Common/SelectedProduct";
 import type { ICategory } from "@/model/categories/category.interface";
 
+export const metadata = { title: "Builder" };
+
 export default async function PCBuilder() {
-    const categories: ICategory[] = await get.categories();
+    const categories: ICategory[] = await getCategories();
     const parts = categories.filter(category => category.name !== "Others");
 
     return (

@@ -4,6 +4,8 @@ import LoginForm from "@/components/Auth/LoginForm";
 import SocialButton from "@/components/Auth/SocialButton";
 import { GoogleOutlined, GithubOutlined } from "@ant-design/icons";
 
+export const metadata = { title: "Login" };
+
 export default function LoginPage() {
     return (
         <div className="mx-auto h-max w-[448px] rounded-2xl bg-[#090928] px-10 py-9 text-white">

@@ -1,6 +1,6 @@
 import Image from "next/image";
-import { get } from "@/helpers/fetch";
 import { BadgeRibbon } from "@/exports/ant";
+import { getProduct } from "@/helpers/fetch";
 import Status from "@/components/AntRapper/Status";
 import Section from "@/components/AntRapper/Section";
 import InfoText from "@/components/Common/InfoText";
@@ -9,7 +9,7 @@ import type { ICategory } from "@/model/categories/category.interface";
 import type { IProduct } from "@/model/products/product.interface";
 
 export default async function ProductDetail({ params }: { params: { id: string } }) {
-    const product: IProduct = await get.product(params.id);
+    const product: IProduct = await getProduct(params.id);
     const { name, image, category, price, status, description, keyFeature, reviews } = product;
 
     return (

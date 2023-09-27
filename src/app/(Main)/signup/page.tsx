@@ -1,6 +1,8 @@
 import Link from "next/link";
 import SignupForm from "@/components/Auth/SignupForm";
 
+export const metadata = { title: "Signup" };
+
 export default function SignupPage() {
     return (
         <div className="mx-auto h-max w-[448px] rounded-2xl bg-[#090928] px-10 py-9 text-white">

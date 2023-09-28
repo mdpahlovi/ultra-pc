@@ -4,7 +4,6 @@ import Image from "next/image";
 import InfoText from "./InfoText";
 import RemoveToBuilder from "./RemoveToBuilder";
 import useBuilderStore from "@/hooks/useBuilderStore";
-import type { ICategory } from "@/model/categories/category.interface";
 
 export default function SelectedProduct({ name }: { name: string }) {
     const { processor, motherboard, ram, psu, sdCard, monitor } = useBuilderStore();
@@ -41,7 +40,7 @@ export default function SelectedProduct({ name }: { name: string }) {
                     <h3 className="mb-1.5">{name}</h3>
                     <InfoText price={price} reviews={reviews} />
                 </div>
-                <RemoveToBuilder name={(category as ICategory).name} />
+                <RemoveToBuilder name={category.name} />
             </div>
         );
     }

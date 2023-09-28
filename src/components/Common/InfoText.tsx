@@ -1,10 +1,10 @@
 "use client";
 
 import { theme } from "antd";
+import { Review } from "@prisma/client";
 import getAvgRating from "@/helpers/getAvgRating";
-import type { IReviews } from "@/model/products/product.interface";
 
-const InfoText = ({ price, reviews }: { price: number; reviews: IReviews[] }) => {
+const InfoText = ({ price, reviews }: { price: number; reviews: Review[] }) => {
     const { token } = theme.useToken();
 
     return (

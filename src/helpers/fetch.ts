@@ -1,23 +1,25 @@
+import prisma from "./prisma";
+
 export async function getCategories() {
-    const res = await fetch("https://ultra-pc-server.vercel.app/api/category");
-    if (!res.ok) throw new Error("Failed to fetch data");
-    return res.json();
+    const result = await prisma.category.findMany({ include: { products: true } });
+    if (!result) throw new Error("Failed to fetch data");
+    return result;
 }
 
 export async function getCategoryProduct(id: string) {
-    const res = await fetch(`https://ultra-pc-server.vercel.app/api/category/${id}`);
-    if (!res.ok) throw new Error("Failed to fetch data");
-    return res.json();
+    const result = await prisma.product.findMany({ where: { categoryId: id } });
+    if (!result) throw new Error("Failed to fetch data");
+    return result;
 }
 
 export async function getProducts() {
-    const res = await fetch("https://ultra-pc-server.vercel.app/api/product/random");
-    if (!res.ok) throw new Error("Failed to fetch data");
-    return res.json();
+    const result = await prisma.product.findMany({ include: { category: true, reviews: true } });
+    if (!result) throw new Error("Failed to fetch data");
+    return result;
 }
 
 export async function getProduct(id: string) {
-    const res = await fetch(`https://ultra-pc-server.vercel.app/api/product/${id}`);
-    if (!res.ok) throw new Error("Failed to fetch data");
-    return res.json();
+    const result = await prisma.product.findUnique({ where: { id }, include: { category: true, reviews: true } });
+    if (!result) throw new Error("Failed to fetch data");
+    return result;
 }

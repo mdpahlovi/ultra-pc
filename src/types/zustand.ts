@@ -1,6 +1,5 @@
-import { IProduct } from "@/model/products/product.interface";
+import { IProduct } from ".";
 import { MappingAlgorithm } from "antd";
-import { type } from "os";
 
 export type BuilderState = {
     processor: IProduct | null;

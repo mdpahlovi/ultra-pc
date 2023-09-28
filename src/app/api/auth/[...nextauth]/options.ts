@@ -1,7 +1,7 @@
 import { compare } from "bcryptjs";
-import User from "@/model/users/user";
+import prisma from "@/helpers/prisma";
 import { encode } from "next-auth/jwt";
-import connection from "@/helpers/connection";
+import { Provider } from "@prisma/client";
 import type { NextAuthOptions } from "next-auth";
 import GithubProvider, { type GithubProfile } from "next-auth/providers/github";
 import GoogleProvider, { type GoogleProfile } from "next-auth/providers/google";
@@ -39,13 +39,12 @@ const options: NextAuthOptions = {
             type: "credentials",
             credentials: {},
             async authorize(credentials, req) {
-                await connection();
                 const { email, password } = credentials as { email: string; password: string };
 
-                const user = await User.findOne({ email: email });
+                const user = await prisma.user.findUnique({ where: { email } });
                 if (!user) throw new Error("User Not Found...!");
 
-                const isPasswordMatch = await compare(password, user.password);
+                const isPasswordMatch = await compare(password, user.password!);
                 if (!isPasswordMatch) throw new Error("Password doesn't match...!");
 
                 return user;
@@ -58,13 +57,12 @@ const options: NextAuthOptions = {
     callbacks: {
         async signIn({ user, account }) {
             if (account?.type === "oauth") {
-                await connection();
-                const payload = { name: user?.name, email: user?.email, image: user?.image, provider: account.provider };
+                const payload = { name: user?.name!, email: user?.email!, image: user?.image!, provider: account.provider as Provider };
 
-                let auth = await User.findOne({ email: user?.email });
-                if (!auth) auth = await new User(payload).save();
+                let auth = await prisma.user.findUnique({ where: { email: user?.email! } });
+                if (!auth) auth = await prisma.user.create({ data: payload });
 
-                user.id = auth._id;
+                user.id = auth.id;
                 return true;
             }
 

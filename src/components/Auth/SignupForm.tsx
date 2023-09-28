@@ -12,12 +12,14 @@ export default function SignupForm() {
     const [isLoading, setIsLoading] = useState(false);
 
     const onFinish = async (values: { name: string; email: string; password: string }) => {
+        setIsLoading(true);
         axios
             .post("/api/auth/signup", values)
             .then(({ data }) => {
                 data?.status ? router.push("/login") : alert(data?.message);
             })
             .catch(error => alert(error?.message));
+        setIsLoading(false);
     };
 
     return (

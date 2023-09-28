@@ -1,10 +1,9 @@
 "use client";
 
 import { Avatar, List } from "antd";
-import { IUser } from "@/model/users/user.interface";
-import { IReviews } from "@/model/products/product.interface";
+import type { IReview } from "@/types";
 
-export default function ProductReview({ reviews }: { reviews: IReviews[] }) {
+export default function ProductReview({ reviews }: { reviews: IReview[] }) {
     return (
         <List
             style={{ maxWidth: "768px", marginInline: "auto" }}
@@ -13,10 +12,10 @@ export default function ProductReview({ reviews }: { reviews: IReviews[] }) {
             renderItem={({ user, rating, comment }) => (
                 <List.Item>
                     <List.Item.Meta
-                        avatar={<Avatar src={(user as IUser)?.image} />}
+                        avatar={<Avatar src={user.image} />}
                         title={
                             <div style={{ display: "flex", justifyContent: "space-between" }}>
-                                <span>{(user as IUser)?.name}</span>
+                                <span>{user.name}</span>
                                 <span>{rating}</span>
                             </div>
                         }

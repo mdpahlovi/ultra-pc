@@ -1,17 +1,16 @@
 "use client";
 
 import { Button } from "antd";
+import { IProduct } from "@/types";
 import { useRouter } from "next/navigation";
 import useBuilderStore from "@/hooks/useBuilderStore";
-import type { IProduct } from "@/model/products/product.interface";
-import type { ICategory } from "@/model/categories/category.interface";
 
 export default function AddToBuilder({ product }: { product: IProduct }) {
     const router = useRouter();
     const { toggleMonitor, toggleMotherboard, toggleProcessor, togglePsu, toggleRam, toggleSdCard } = useBuilderStore();
 
     const addToBuilder = () => {
-        switch ((product.category as ICategory).name) {
+        switch (product.category.name) {
             case "CPU / Processor":
                 toggleProcessor(product);
                 router.push("/pc-builder");

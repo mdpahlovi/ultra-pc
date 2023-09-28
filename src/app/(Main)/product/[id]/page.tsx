@@ -1,21 +1,25 @@
 import Image from "next/image";
+import prisma from "@/helpers/prisma";
 import { BadgeRibbon } from "@/exports/ant";
 import { getProduct } from "@/helpers/fetch";
 import Status from "@/components/AntRapper/Status";
 import Section from "@/components/AntRapper/Section";
 import InfoText from "@/components/Common/InfoText";
 import ProductReview from "@/components/Product/ProductReview";
-import type { ICategory } from "@/model/categories/category.interface";
-import type { IProduct } from "@/model/products/product.interface";
+
+export async function generateMetadata({ params }: { params: { id: string } }) {
+    const product = await prisma.product.findUnique({ where: { id: params?.id }, select: { name: true } });
+    return { title: product?.name };
+}
 
 export default async function ProductDetail({ params }: { params: { id: string } }) {
-    const product: IProduct = await getProduct(params.id);
+    const product = await getProduct(params.id);
     const { name, image, category, price, status, description, keyFeature, reviews } = product;
 
     return (
         <>
             <Section className="grid gap-6 lg:grid-cols-2 lg:gap-24">
-                <BadgeRibbon text={(category as ICategory).name}>
+                <BadgeRibbon text={category.name}>
                     <div className="rounded-lg bg-white">
                         <Image src={image} alt="" className="w-auto rounded-lg" width={448} height={256} />
                     </div>

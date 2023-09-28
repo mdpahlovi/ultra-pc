@@ -1,7 +1,7 @@
 "use client";
 
 import { Button } from "antd";
-import { IProduct } from "@/types";
+import type { IProduct } from "@/types";
 import { useRouter } from "next/navigation";
 import useBuilderStore from "@/hooks/useBuilderStore";
 

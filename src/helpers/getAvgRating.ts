@@ -1,7 +1,7 @@
 import { Review } from "@prisma/client";
 
 export default function getAvgRating(reviews: Review[]): number {
-    if (reviews.length === 0) {
+    if (reviews?.length === 0 || !reviews?.length) {
         return 0;
     } else {
         const ratings = reviews.map(review => review.rating);

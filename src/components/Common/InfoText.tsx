@@ -12,7 +12,9 @@ const InfoText = ({ price, reviews }: { price: number; reviews: Review[] }) => {
             <div style={{ backgroundColor: token.colorText }} className="mb-1 h-1 rounded" />
             <div className="flex justify-between text-sm">
                 <span>Price: ${price}</span>
-                <span>Rating: {getAvgRating(reviews)}</span>
+                <span>
+                    Rating: {getAvgRating(reviews)}({reviews.length})
+                </span>
             </div>
         </>
     );

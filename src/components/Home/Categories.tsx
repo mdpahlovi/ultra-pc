@@ -1,4 +1,4 @@
-import { ICategory } from "@/types";
+import type { ICategory } from "@/types";
 import AntCard from "../AntRapper/AntCard";
 import NextLink from "../AntRapper/NextLink";
 

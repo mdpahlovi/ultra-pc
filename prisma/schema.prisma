@@ -42,7 +42,7 @@ model Product {
     status      String
     price       Float
     description String
-    keyFeature  Json
+    keyFeature  String[]
     reviews     Review[]
     createdAt   DateTime @default(now())
     updatedAt   DateTime @updatedAt

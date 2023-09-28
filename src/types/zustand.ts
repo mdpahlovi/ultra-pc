@@ -1,4 +1,4 @@
-import { IProduct } from ".";
+import type { IProduct } from ".";
 import { MappingAlgorithm } from "antd";
 
 export type BuilderState = {

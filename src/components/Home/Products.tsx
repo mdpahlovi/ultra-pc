@@ -1,4 +1,4 @@
-import { IProduct } from "@/types";
+import type { IProduct } from "@/types";
 import ProductCard from "../Product/ProductCard";
 
 export default function Products({ products }: { products: IProduct[] }) {

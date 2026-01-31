@@ -1,39 +1,49 @@
-## Ultra PC - A Simple PC Builder website using Next.js and Ant Design
+# Ultra PC - PC Builder Website
 
-#### LiveLink: https://ultra-pc.vercel.app/
+A full-stack PC building website where users can select components
+and build their custom PC.
 
-#### Client GitHub Repo: https://github.com/mdpahlovi/ultra-pc
+## 🔗 Links
 
-#### Server GitHub Repo: https://github.com/mdpahlovi/ultra-pc-server
+- **Live Site:** [ultra-pc.vercel.app](https://ultra-pc.vercel.app/)
+- **Client Repo:** [GitHub](https://github.com/mdpahlovi/ultra-pc)
 
-### Layout:
+## 🛠️ Tech Stack
 
-Responsive Navbar & Footer. With Products Drop-down.
+| Frontend   | Backend | Auth                |
+| ---------- | ------- | ------------------- |
+| Next.js    | Node.js | NextAuth.js         |
+| Ant Design | Express | Google/GitHub OAuth |
+|            | MongoDB |                     |
 
-### Home Page(SSG):
+## ✨ Features
 
-Slidable hero section, Random 6 product as "Featured Products", and a category section as "Featured Categories"
-Click on any Product "See Details" Button Redirect to Product Details page.
-Click on any Category Name Redirect to Category Details page.
+### Home Page (SSG)
 
-### Category Details Page (SSG):
+- Slidable hero section
+- 6 random featured products
+- Featured categories section
 
-Show the product specific of that category.
-Click on any Product "See Details" Button Redirect to Product Details page.
+### PC Builder Page (SSR) 🔒
 
-### Product Details Page (SSG):
+- Select components by category
+- Add to builder functionality
+- Complete build option
 
-You can see the complete Product Details.
+### Authentication
 
-### Login Page:
+- Google & GitHub OAuth
+- Email/Password signup & login
 
-Google And GitHub login options available. If you want to login using email & password. Go-to to sign up page by click "Or Signup"
+## 🚀 Installation
 
-### Signup Page:
+```bash
+git clone https://github.com/mdpahlovi/ultra-pc
+cd ultra-pc
+npm install
+npm run dev
+```
 
-You have to provide name, email, password. Submit by clicking "Signup" Button. After successfully signup you will redirect to login page
-Then you can login by using your email and password.
+## 📜 License
 
-### PC Builder Page (SSR):
-
-After login you can access PC Builder page. Here you you see all category of components to build a PC, For select a component of a category click "Select" button. Then you will redirect to Category Details page. Here you chooses a component by clicking "Add To Builder". Then you will again redirect to PC Builder page. Now you can see your selected component under the category name. After selecting all component you can complete your build by clicking "Complete Build" button.
+MIT

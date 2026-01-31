@@ -4,7 +4,7 @@ import { useSession, signOut } from "next-auth/react";
 import useCategoryMenu from "@/hooks/useCategoryMenu";
 import menuItem from "@/components/AntRapper/menuItem";
 import { Menu, Button, type MenuProps, Avatar } from "antd";
-import type { ItemType } from "antd/es/menu/hooks/useItems";
+import type { ItemType } from "antd/lib/menu/interface";
 
 export default function MenuItems({ vertical }: { vertical?: boolean }) {
     const { data } = useSession();

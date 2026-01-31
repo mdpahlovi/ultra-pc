@@ -5,7 +5,6 @@ import type { AntCardProps } from "@/types";
 export default function AntCard({ children, className, imageClassName, image, width, height }: AntCardProps) {
     return (
         <Card
-            bordered={false}
             className={className}
             cover={
                 <div className={`rounded-t-lg bg-white ${imageClassName}`}>

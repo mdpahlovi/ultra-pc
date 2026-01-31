@@ -6,8 +6,8 @@
         ".gitignore": true,
         ".prettierrc": true,
         "next-env.d.ts": true,
+        "package-lock.json": true,
         "postcss.config.js": true,
         "tsconfig.json": true,
-        "yarn.lock": true
     }
 }

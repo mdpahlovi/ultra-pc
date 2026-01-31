@@ -14,7 +14,7 @@ export default async function PCBuilder() {
         <div className="space-y-6">
             {parts?.length &&
                 parts.map(({ id, name, products }) => (
-                    <Card key={id} bordered={false}>
+                    <Card key={id}>
                         <div className="flex justify-between gap-6">
                             <h3>
                                 {name} ({products?.length})
